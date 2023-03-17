@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src='./assets/bootstrap/js/bootstrap.min.js'></script>
+</head>
+
+<body>
+
+  <div class="container" style="display: flex; align-items: center; flex-direction: column; width: 360">
+    <span style="display: flex; flex-direction: row;">
+      <h1 style="font-family: cpmono-bold; font-size: 45px; color: #fc9432">Health</h1>
+      <h1 style="font-family: cpmono-bold; font-size: 45px; color:#76c0e3">Track</h1>
+    </span>
+    <p style="font-family: cpmono-light; font-size: 13px">Track your Fitness Journey!</p>
+    <div>
+      <button id="continue" class="clickable hidden"
+        style="color: white; border-style:groove; width: 100%; font-family: cpmono-plain; font-size: 20px;">Continue</button>
+    </div>
+    <span style="display: flex; flex-direction: row; align-items: center;" class="" id="ageinput">
+      <h6 style="">Age</h6>
+      <input id="agetextbar" onclick="openKeyboard()" type="number" class="form-control" placeholder=""
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 35px; margin-bottom: 10px;">
+    </span>
+    <span style="display: flex; flex-direction: row; align-items: center;" class="" id="genderinput">
+      <h6 style="">Gender</h6>
+      <input id="gendertextbar" onclick="openKeyboard()" type="text" class="form-control" placeholder=""
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px; margin-bottom: 10px;">
+    </span>
+    <span style="display: flex; flex-direction: column; align-items: center;" class="" id="motiveinput">
+      <h6 style="">What are your goals?</h6>
+      <select class="form-select form-select-sm " aria-label=".form-select-sm example"
+        style="margin-top: 10px; margin-bottom: 10px;" id="selectmotive">
+        <option value="1">Performance and Muscle</option>
+        <option value="2">General Fitness</option>
+        <option value="3">Healthier Diet</option>
+      </select>
+    </span>
+    <div>
+      <button id="getstarted" class="clickable"
+        style="color: white; border-style:groove; width: 100%; font-family: cpmono-plain; font-size: 20px;" onclick="getStarted()">Get
+        Started</button>
+    </div>
+    <button id="clearalldata" onclick="clearAllData()" class="clickable footer" 
+      style="color: white; border-style:groove; width: 90%; font-family: cpmono-plain; font-size: 20px; padding: 5px; background-color: tomato; left: 5%; bottom: 10px">Delete
+      Account Data</button>
+  </div>
+</body>
+<img id="keyboardimage" src="./assets/keyboard.jpeg" class="hiddenkey" style="right: 1px">
+<script>
+
+  window.onload = function () {
+    if (localStorage.getItem("basicinfo") != null) {
+      document.getElementById("ageinput").className = "hidden"
+      document.getElementById("genderinput").className = "hidden"
+      document.getElementById("motiveinput").className = "hidden"
+      document.getElementById("getstarted").className = "clickable hidden"
+
+      document.getElementById("continue").className = "clickable"
+    }
+    else {
+      document.getElementById("clearalldata").style.display = "none"
+    }
+  }
+
+  function getStarted() {
+    closeKeyboard()
+    var age = document.getElementById("agetextbar").value
+    var gender = document.getElementById("gendertextbar").value
+    var motiveselect = document.getElementById("selectmotive")
+    var whichmotive = motiveselect.options[motiveselect.selectedIndex].value
+
+    if(age != "" && gender != ""){
+      if(whichmotive == 1){
+        localStorage.setItem("motive", "Performance and Muscle");
+      }
+      if(whichmotive == 2){
+        localStorage.setItem("motive", "General Fitness");
+      }
+      if(whichmotive == 3){
+        localStorage.setItem("motive", "Healthier Diet");
+      }
+      localStorage.setItem("basicinfo", true)
+      location.href = "./calories.html";
+    }
+
+    
+  }
+
+  function clearAllData(){
+    localStorage.clear();
+    location.href = "./index.html";
+  }
+
+  document.getElementById("continue").onclick = function () {
+    location.href = "./calories.html";
+  };
+
+  function openKeyboard() {
+    var c = document.getElementById("keyboardimage").className = "shownkey"
+  }
+
+  function closeKeyboard() {
+    var c = document.getElementById("keyboardimage").className = "hiddenkey"
+  }
+</script>
+
+
+</html>

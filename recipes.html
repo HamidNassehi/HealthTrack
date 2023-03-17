@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src='./assets/bootstrap/js/bootstrap.min.js'></script>
+</head>
+<span style="display: flex; flex-direction: row" onclick="home()">
+    <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color: #fc9432">Health</h1>
+    <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color:#76c0e3">Track</h1>
+</span>
+<button id="back" class="clickable"
+    style="color: white; border-style:groove; width: 10%; font-family: cpmono-plain; font-size: 20px; margin-left: 10px;">
+    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+    </svg>
+</button>
+
+<body>
+
+    <div class="container" style="display: flex; align-items: center; flex-direction: column; width: 360">
+        <h1 id="recipes tag"
+            style="text-align: center; font-family: cpmono-plain; font-size: 20px; color:grey; margin-top: 20px">Recipes
+        </h1>
+        <h3 id="motivetag" style="text-align: center; font-family: cpmono-plain; font-size: 15px; color:grey;"></h3>
+
+        <div id="accordion">
+            <div class="card" name="highprotein" style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            Cornmeal Porridge
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body" style="font-family: cpmono-plain">
+                        <ul>
+                            <li>339 calories</li>
+                            <li>10g fat</li>
+                            <li>50g carbs</li>
+                            <li>20g sugars</li>
+                            <li>17g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="highprotein" style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Double bean & Roasted Pepper Chili
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>327 calories</li>
+                            <li>6g fat</li>
+                            <li>41g carbs</li>
+                            <li>19g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="highprotein" style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Vegetarian Bolognese
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>453 calories</li>
+                            <li>10g fat</li>
+                            <li>62g carbs</li>
+                            <li>24g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="highprotein"
+                style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Vegetarian stir-fry with broccoli & brown rice
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>436 calories</li>
+                            <li>11g fat</li>
+                            <li>58g carbs</li>
+                            <li>24g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="highprotein"
+                style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Easy protein pancakes
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>437 calories</li>
+                            <li>16g fat</li>
+                            <li>39g carbs</li>
+                            <li>31g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="highprotein"
+                style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Green Chili Chicken Bake
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>240 calories</li>
+                            <li>5g fat</li>
+                            <li>14g carbs</li>
+                            <li>40g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="highprotein"
+                style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Low-Carb Hamburger Helper
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>390 calories</li>
+                            <li>20g fat</li>
+                            <li>11g carbs</li>
+                            <li>40g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcalorie" style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Grilled Vegetable Wrap With Balsamic Mayo
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>240 calories</li>
+                            <li>13g fat (3.5g saturated)</li>
+                            <li>450mg sodium</li>
+                            <li>12g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcalorie" style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Asparagus Mushroom Gluten-Free Quiche
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>207 calories</li>
+                            <li>16g fat</li>
+                            <li>3g carbs</li>
+                            <li>14g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcalorie" style="font-family: cpmono-bold; margin-bottom: 20px; display: none;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Spinach Feta Frittata
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>152 calories</li>
+                            <li>10g fat</li>
+                            <li>5g carbs</li>
+                            <li>10g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcalorie" style="font-family: cpmono-bold; margin-bottom: 20px;">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Mexican Breakfast Bowl
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>406 calories</li>
+                            <li>25g fat</li>
+                            <li>14g carbs</li>
+                            <li>34g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcalorie" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Air Fryer Chicken Parm
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>385 calories</li>
+                            <li>18g fat</li>
+                            <li>28g carbs</li>
+                            <li>32g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcarb" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Old Delhi-style butter chicken
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>472 calories</li>
+                            <li>34g fat (17g saturated)</li>
+                            <li>11g carbs</li>
+                            <li>29g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcarb" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Low Carb Chocolate Smoothie Bowl
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>280 calories</li>
+                            <li>26g fat</li>
+                            <li>7g carbs</li>
+                            <li>25g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="lowcarb" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Ratatouille
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>261 calories</li>
+                            <li>15g fat</li>
+                            <li>6g carbs</li>
+                            <li>19g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="glutenfree" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Epic Summer Salad
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>392 calories</li>
+                            <li>30g fat</li>
+                            <li>18g carbs</li>
+                            <li>8g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="glutenfree" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Easy Apple Pecan Chicken Salad
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>283 calories</li>
+                            <li>14.5g fat</li>
+                            <li>2g carbs</li>
+                            <li>25g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="glutenfree" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Oatmeal Cashew Cookie Coconut Protein Balls
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>102 calories</li>
+                            <li>5g fat</li>
+                            <li>1g carbs</li>
+                            <li>5g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="glutenfree" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Honey Garlic Baked Chicken and Cauliflower
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>324 calories</li>
+                            <li>10g fat</li>
+                            <li>17g carbs</li>
+                            <li>41g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" name="glutenfree" style="font-family: cpmono-bold; margin-bottom: 20px; display: none">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Air Fryer Sweet Potato Wedges
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion"
+                    style="font-family: cpmono-plain">
+                    <div class="card-body">
+                        <ul>
+                            <li>128 calories</li>
+                            <li>3.5g fat</li>
+                            <li>0g carbs</li>
+                            <li>3g protein</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById("back").onclick = function () {
+        location.href = "./calories.html";
+    };
+
+    window.onload = function () {
+        var motive = localStorage.getItem("motive")
+        console.log(motive)
+        document.getElementById("motivetag").innerText = motive;
+
+        var allrecipecards = document.getElementsByClassName('card');
+        for (var i = 0; i < allrecipecards.length; i++) {
+            var item = allrecipecards[i];
+            if (motive == "Performance and Muscle" && (item.getAttribute('name') == "highprotein" || item.getAttribute('name') == "lowcarb")) {
+                item.style = "font-family: cpmono-bold; margin-bottom: 20px;";
+            }
+            else if (motive == "General Fitness" && (item.getAttribute('name') == "lowcalorie")) {
+                item.style = "font-family: cpmono-bold; margin-bottom: 20px;";
+            }
+            if (motive == "Healthier Diet" && (item.getAttribute('name') == "lowcarb" || item.getAttribute('name') == "glutenfree")) {
+                item.style = "font-family: cpmono-bold; margin-bottom: 20px;";
+            }
+        }
+
+    }
+
+    function home() {
+        location.href = "./index.html";
+    }
+</script>
+
+</html>

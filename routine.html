@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src='./assets/bootstrap/js/bootstrap.min.js'></script>
+</head>
+
+
+<span style="display: flex; flex-direction: row" onclick="home()">
+  <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color: #fc9432">Health</h1>
+  <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color:#76c0e3">Track</h1>
+</span>
+
+<body>
+
+
+  <span style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-right: 10px; margin-left: 10px;">
+    <span style="display: flex; flex-direction: column;">
+      <h2 style="text-align: center;color: #fc9432; font-family: cpmono-bold;">Routine</h2>
+      <h2 style="text-align: center;color: #fc9432; font-family: cpmono-bold;">Planner</h2>
+    </span>
+    <button onclick="clearRoutine()" class="clickable"
+    style="color: white; border-style:groove; width: 40%; font-family: cpmono-plain; font-size: 13px; padding: 5px; background-color: tomato; height: 40px">Clear
+    Routine</button>
+  </span>
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 150px; width: 80%;font-family: cpmono-plain; margin-left: 10%; display: none"
+    class="" id="chestmodal">
+    CHEST WORKOUTS
+    <div id="chest_workouts" class="" style="margin-top: 20px;">
+      <button class="clickable" onclick="addExercise('Incline Chest Press - 3x10')" style="margin-bottom: 20px;">Incline Chest Press - 3x10 -
+        Beginner</button>
+      <button class="clickable" onclick="addExercise('Barbell Bench Press - 4x10')" style="margin-bottom: 20px;">Barbell Bench Press - 4x10 -
+        Intermediate</button>
+      <button class="clickable" onclick="addExercise('Cable Flys - 3x10')" style="margin-bottom: 20px;">Cable Flys - 3x10 - Advanced</button>
+    </div>
+  </div>
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 150px; width: 80%;font-family: cpmono-plain; margin-left: 10%; display: none"
+    class="" id="backmodal">
+    BACK WORKOUTS
+    <div id="chest_workouts" class="" style="margin-top: 20px;">
+      <button class="clickable" onclick="addExercise('Seated rows - 3x10')" style="margin-bottom: 20px;">Seated Rows - 3x10 -
+        Beginner</button>
+      <button class="clickable" onclick="addExercise('Lat pulldown - 3x10')" style="margin-bottom: 20px;">Lateral Pulldown - 3x10 -
+        Intermediate</button>
+      <button class="clickable" onclick="addExercise('Deadlift - 3x10 ')"  style="margin-bottom: 20px;">Deadlift - 3x10 - Advanced</button>
+    </div>
+  </div>
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 150px; width: 80%;font-family: cpmono-plain; margin-left: 10%; display: none"
+    class="" id="bicepsmodal">
+    BICEPS WORKOUTS
+    <div id="chest_workouts" class="" style="margin-top: 20px;">
+      <button class="clickable" onclick="addExercise('Dumbbell Curls - 3x10')" style="margin-bottom: 20px;">Dumbbell Curls - 3x10 -
+        Beginner</button>
+      <button class="clickable" onclick="addExercise('Barbell Curls - 3x10')" style="margin-bottom: 20px;">Barbell Curls - 3x10 -
+        Beginner</button>
+      <button class="clickable" onclick="addExercise('Dumbbell Hammer Curls - 3x10')" style="margin-bottom: 20px;">Dumbbell Hammer Curls - 3x10 - Intermediate</button>
+    </div>
+  </div>
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 150px; width: 80%;font-family: cpmono-plain; margin-left: 10%; display: none"
+    class="" id="tricepsmodal">
+    TRICEPS WORKOUTS
+    <div id="chest_workouts" class="" style="margin-top: 20px;">
+      <button class="clickable" onclick="addExercise('Cable pulldowns - 3x10')" style="margin-bottom: 20px;">Cable Pulldowns - 3x10 -
+        Beginner</button>
+      <button class="clickable" onclick="addExercise('Skull crushers - 3x10')" style="margin-bottom: 20px;">Skullcrushers - 3x10 -
+        Intermediate</button>
+      <button class="clickable" onclick="addExercise('Tricep pushups - 4x10')" style="margin-bottom: 20px;">Diamond Pushups - 4x10 - Advanced</button>
+    </div>
+  </div>
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 150px; width: 80%;font-family: cpmono-plain; margin-left: 10%; display: none"
+    class="" id="legsmodal">
+    LEGS WORKOUTS
+    <div id="chest_workouts" class="" style="margin-top: 20px;">
+      <button class="clickable" onclick="addExercise('Leg Press - 3x10')" style="margin-bottom: 20px;">Leg Press - 3x10 -
+        Beginner</button>
+      <button class="clickable" onclick="addExercise('Squats - 3x10')" style="margin-bottom: 20px;">Squats - 4x10 -
+        Intermediate</button>
+      <button class="clickable" onclick="addExercise('Bulgarian split squats - 3x10')" style="margin-bottom: 20px;">Bulgarian Split Squats - 3x10 - Expert</button>
+    </div>
+  </div>
+
+  <div style="align-items: center; display: flex; flex-direction: column;">
+    <button id="chest" class="clickable" onclick="openChestModal()"
+      style="color: white; border-style:groove; width: 80%; font-family: cpmono-plain; font-size: 20px; margin-bottom: 20px;">Chest</button>
+    <button id="biceps" class="clickable" onclick="openBicepsModal()"
+      style="color: white; border-style:groove; width: 80%; font-family: cpmono-plain; font-size: 20px; margin-bottom: 20px;">Biceps</button>
+    <button id="triceps" class="clickable" onclick="openTricepsModal()"
+      style="color: white; border-style:groove; width: 80%; font-family: cpmono-plain; font-size: 20px; margin-bottom: 20px;">Triceps</button>
+    <button id="legs" class="clickable" onclick="openLegsModal()"
+      style="color: white; border-style:groove; width: 80%; font-family: cpmono-plain; font-size: 20px; margin-bottom: 20px;">Legs</button>
+    <button id="back" class="clickable" onclick="openBackModal()"
+      style="color: white; border-style:groove; width: 80%; font-family: cpmono-plain; font-size: 20px; margin-bottom: 20px;">Back</button>
+  </div>
+
+  <span style="position: absolute; width: 100%; top: 350px">
+    <h1 id="myroutinetag" style="text-align: center; font-family: cpmono-plain; font-size: 20px; color:grey; margin-top: 20px">My Routine</h1>
+    <ul class="routine" id="list" style="font-family: cpmono-light;"></ul>
+  </span>
+
+
+  <div style="display: flex; flex-direction: row;" class="footer">
+    <div class="navtab" id="calories"
+      style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+      Calories
+    </div>
+    <div class="navtab" id="goals"
+      style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+      My Goals
+    </div>
+    <div class="navtab" id="routine"
+      style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+      Routine
+    </div>
+
+  </div>
+
+  <script>
+    window.onload = function () {
+      //localStorage.removeItem("myroutine")
+      if(localStorage.getItem("myroutine") == null){
+        var s = ["Stretching"]
+        localStorage.setItem("myroutine", JSON.stringify(s));
+      }
+        for(var i = 0; i < JSON.parse(localStorage.getItem("myroutine")).length; i++){
+          var str = JSON.parse(localStorage.getItem("myroutine"))[i]
+          var node = document.createElement('li');
+          node.appendChild(document.createTextNode(str));
+          document.querySelector('ul').appendChild(node);
+        }
+    }
+
+    document.getElementById("calories").onclick = function () {
+      location.href = "./calories.html";
+    };
+    document.getElementById("goals").onclick = function () {
+      location.href = "./progress.html";
+    };
+    document.getElementById("routine").onclick = function () {
+      location.href = "./routine.html";
+    };
+
+    function openChestModal() {
+      document.getElementById("biceps").style.display = "none"
+      document.getElementById("triceps").style.display = "none"
+      document.getElementById("legs").style.display = "none"
+      document.getElementById("back").style.display = "none"
+
+      document.getElementById("chestmodal").style.display = ""
+    }
+
+    function openBicepsModal() {
+      document.getElementById("chest").style.display = "none"
+      document.getElementById("triceps").style.display = "none"
+      document.getElementById("legs").style.display = "none"
+      document.getElementById("back").style.display = "none"
+
+      document.getElementById("bicepsmodal").style.display = ""
+    }
+
+    function openTricepsModal() {
+      document.getElementById("biceps").style.display = "none"
+      document.getElementById("chest").style.display = "none"
+      document.getElementById("legs").style.display = "none"
+      document.getElementById("back").style.display = "none"
+
+      document.getElementById("tricepsmodal").style.display = ""
+    }
+
+    function openLegsModal() {
+      document.getElementById("biceps").style.display = "none"
+      document.getElementById("triceps").style.display = "none"
+      document.getElementById("chest").style.display = "none"
+      document.getElementById("back").style.display = "none"
+
+      document.getElementById("legsmodal").style.display = ""
+    }
+
+    function openBackModal() {
+      document.getElementById("biceps").style.display = "none"
+      document.getElementById("triceps").style.display = "none"
+      document.getElementById("legs").style.display = "none"
+      document.getElementById("chest").style.display = "none"
+
+      document.getElementById("backmodal").style.display = ""
+    }
+
+    function addExercise(exercise) {
+          var node = document.createElement('li');
+          node.appendChild(document.createTextNode(exercise));
+          document.querySelector('ul').appendChild(node);
+
+          var rt = localStorage.getItem("myroutine").length > 0 ? JSON.parse(localStorage.getItem("myroutine")) : [];
+          rt.push(exercise)
+          localStorage.setItem("myroutine", JSON.stringify(rt))
+
+        document.getElementById("biceps").style.display = ""
+        document.getElementById("triceps").style.display = ""
+        document.getElementById("legs").style.display = ""
+        document.getElementById("chest").style.display = ""
+        document.getElementById("back").style.display = ""
+        document.getElementById("backmodal").style.display = "none"
+        document.getElementById("chestmodal").style.display = "none"
+        document.getElementById("bicepsmodal").style.display = "none"
+        document.getElementById("tricepsmodal").style.display = "none"
+        document.getElementById("legsmodal").style.display = "none"
+    }
+
+    function clearRoutine(){
+      document.getElementById("list").innerHTML = "";
+      localStorage.removeItem("myroutine")
+      location.href = "./routine.html";
+    }
+
+    function home() {
+        location.href = "./index.html";
+    }
+  </script>
+</body>
+
+</html>

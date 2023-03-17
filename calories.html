@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  ul li {
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+</style>
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src='./assets/bootstrap/js/bootstrap.min.js'></script>
+</head>
+
+<span style="display: flex; flex-direction: row" onclick="home()">
+  <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color: #fc9432">Health</h1>
+  <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color:#76c0e3">Track</h1>
+</span>
+
+<body style="margin-left: 2%; margin-right: 2%;">
+
+  <span style="display: flex; flex-direction: row; justify-content: space-between;">
+    <h2 style="text-align: center;color: #fc9432; font-family: cpmono-bold;">Calories</h2>
+    <h2 id="today" style="text-align: center; color: #fc9432; font-family: cpmono-plain;"></h2>
+  </span>
+
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 100px; width: 50%;font-family: cpmono-plain; margin-left: 25%;"
+    class="hidden" id="caloriemodal">
+    Add Meal
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">name</h6>
+      <input id="mealname" onclick="openKeyboard()" type="text" class="form-control" placeholder=""
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">calories</h6>
+      <input id="caloriesinput" onclick="openKeyboard()" type="number" class="form-control" placeholder=""
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" style="margin-top: 10px;"
+      id="selectmeal">
+      Meal Select
+      <option value="1">Breakfast</option>
+      <option value="2">Lunch</option>
+      <option value="3">Dinner</option>
+    </select>
+    <button onclick="addMeal()" class="clickable"
+      style="color: white; border-style:groove; width: 100%; font-family: cpmono-plain; font-size: 13px; padding: 5px; margin-top: 10px;">Add
+      Meal</button>
+  </div>
+
+  <div style="overflow-y:scroll;" id="calorielists">
+
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%;">
+      <h1 style="text-align: center; font-family: cpmono-plain; font-size: 20px; color:grey">Breakfast</h1>
+      <span style="display: flex; flex-direction: row; width: 100%; justify-content: end; margin-right: 5px;">
+        <button id="add" class="clickable" onclick="openCalorieAdd()"
+          style="color: white; border-style:groove; width: 20%; font-family: cpmono-plain; font-size: 13px; padding: 5px; margin-right: 2%;">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="white" d="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" />
+          </svg>
+        </button>
+        <button onclick="clearCalorieData()" class="clickable"
+          style="color: white; border-style:groove; width: 40%; font-family: cpmono-plain; font-size: 13px; padding: 5px; background-color: tomato;">Clear
+          Data</button>
+      </span>
+    </div>
+
+    <ul class="list-group list-group-flush" id="breakfastlist" style="margin-bottom: 10px; font-family: cpmono-light; margin-top: 10px">
+
+    </ul>
+
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+      <h1 style="text-align: center; font-family: cpmono-plain; font-size: 20px; color:grey">Lunch</h1>
+    </div>
+
+    <ul class="list-group list-group-flush" id="lunchlist" style="margin-bottom: 10px; font-family: cpmono-light;">
+
+    </ul>
+
+
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+      <h1 style="text-align: center; font-family: cpmono-plain; font-size: 20px; color:grey">Dinner</h1>
+    </div>
+
+    <ul class="list-group list-group-flush" id="dinnerlist" style="margin-bottom: 10px; font-family: cpmono-light;">
+
+    </ul>
+  </div>
+  <button id="morerecipes" class="clickable"
+    style="color: white; border-style:groove; width: 100%; font-family: cpmono-plain; font-size: 20px;">More
+    Recipes</button>
+  <h1 id="dailygoaltag" style="text-align: center; font-family: cpmono-plain; font-size: 20px; color:grey; margin-top: 20px">Daily Caloric
+    Goal</h1>
+    <h3 id="motivetag" style="text-align: center; font-family: cpmono-plain; font-size: 15px; color:grey;"></h3>
+    <h1 id="eatenoverleft" style="text-align: center; font-family: cpmono-plain; font-size: 20px; color:grey; margin-top: 20px"></h1>
+  <div id="chartContainer" style="width: 100%;" class=""></div>
+</body>
+<img id="keyboardimage" src="./assets/keyboard.jpeg" class="hiddenkey" style="right: 1px">
+<div style="display: flex; flex-direction: row;" class="footer">
+  <div class="navtab" id="calories"
+    style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+    Calories
+  </div>
+  <div class="navtab" id="goals"
+    style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+    My Goals
+  </div>
+  <div class="navtab" id="routine"
+    style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+    Routine
+  </div>
+</div>
+</div>
+<script src='./assets/jquery/jquery-3.6.1.min.js'></script>
+<script type="text/javascript" src="./assets/canvasjs-3.7.1/canvasjs.min.js"></script>
+<script>
+  window.onload = function () {
+    // localStorage.removeItem("breakfastitems")
+    // localStorage.removeItem("lunchitems")
+    // localStorage.removeItem("dinneritems")
+    // localStorage.removeItem("calorieseaten")
+    // localStorage.removeItem("calsperdaygoal")
+
+    var motive = localStorage.getItem("motive")
+    document.getElementById("motivetag").innerText = motive;
+
+    var today = new Date();
+    document.getElementById("today").innerText = today.toLocaleDateString()
+
+    if(localStorage.getItem("calsperdaygoal") == null){
+      localStorage.setItem("calsperdaygoal", 2500)
+    }
+    if (localStorage.getItem("calorieseaten") == null) {
+      localStorage.setItem("calorieseaten", 1500)
+    }
+
+    document.getElementById("eatenoverleft").innerText = localStorage.getItem("calorieseaten") + "/" + localStorage.getItem("calsperdaygoal") + " calories"
+
+    if (localStorage.getItem("breakfastitems") == null) {
+      localStorage.setItem("breakfastitems", JSON.stringify(["burrito - 500 calories"]));
+    }
+    if (localStorage.getItem("breakfastitems").length > 0) {
+      for (var i = 0; i < JSON.parse(localStorage.getItem("breakfastitems")).length; i++) {
+        var bl = document.getElementById("breakfastlist");
+        var li = document.createElement("li");
+        var str = JSON.parse(localStorage.getItem("breakfastitems"))[i]
+        li.appendChild(document.createTextNode(str));
+        bl.appendChild(li)
+      }
+    }
+
+    if (localStorage.getItem("lunchitems") == null) {
+      localStorage.setItem("lunchitems", JSON.stringify(["salad - 200 calories"]));
+    }
+    if (localStorage.getItem("lunchitems").length > 0) {
+      for (var i = 0; i < JSON.parse(localStorage.getItem("lunchitems")).length; i++) {
+        var ll = document.getElementById("lunchlist");
+        var li = document.createElement("li");
+        var str = JSON.parse(localStorage.getItem("lunchitems"))[i]
+        li.appendChild(document.createTextNode(str));
+        ll.appendChild(li)
+      }
+    }
+
+    if (localStorage.getItem("dinneritems") == null) {
+      localStorage.setItem("dinneritems", JSON.stringify(["steak - 800 calories"]));
+    }
+    if (localStorage.getItem("dinneritems").length > 0) {
+      for (var i = 0; i < JSON.parse(localStorage.getItem("dinneritems")).length; i++) {
+        var dl = document.getElementById("dinnerlist");
+        var li = document.createElement("li");
+        var str = JSON.parse(localStorage.getItem("dinneritems"))[i]
+        li.appendChild(document.createTextNode(str));
+        dl.appendChild(li)
+      }
+    }
+
+    loadChart();
+  }
+
+
+  document.getElementById("calories").onclick = function () {
+    location.href = "./calories.html";
+  };
+  document.getElementById("goals").onclick = function () {
+    location.href = "./progress.html";
+  };
+  document.getElementById("routine").onclick = function () {
+    location.href = "./routine.html";
+  };
+  document.getElementById("morerecipes").onclick = function () {
+    location.href = "./recipes.html"
+  }
+
+  function openCalorieAdd() {
+    document.getElementById("caloriemodal").className = ""
+    document.getElementById("calorielists").className = "hidden"
+    document.getElementById("chartContainer").className = "hidden"
+    document.getElementById("morerecipes").className = "hidden"
+    document.getElementById("dailygoaltag").className = "hidden"
+    document.getElementById("motivetag").className = "hidden"
+  }
+
+  function clearCalorieData() {
+    localStorage.setItem("breakfastitems", []);
+    localStorage.setItem("lunchitems", []);
+    localStorage.setItem("dinneritems", []);
+    localStorage.setItem("calorieseaten", 0);
+    //localStorage.setItem("calsperdaygoal", 2500);
+    location.href = "./calories.html"
+
+    document.getElementById("breakfastlist").innerHTML = '';
+    document.getElementById("lunchlist").innerHTML = '';
+    document.getElementById("dinnerlist").innerHTML = '';
+    loadChart()
+
+  }
+
+  function addMeal() {
+    var mealname = document.getElementById("mealname").value
+    var calories = document.getElementById("caloriesinput").value
+    var mealselect = document.getElementById("selectmeal")
+    var whichmeal = mealselect.options[mealselect.selectedIndex].value
+
+    if (mealname != "" && calories != "") {
+      var cals = parseInt(calories)
+      var et = parseInt(localStorage.getItem("calorieseaten"));
+      console.log(et)
+      et += cals
+      localStorage.setItem("calorieseaten", et)
+
+      if (whichmeal == 1) {
+        var bl = document.getElementById("breakfastlist");
+        var li = document.createElement("li");
+        var str = mealname + " - " + cals + " calories";
+        li.appendChild(document.createTextNode(mealname + " - " + cals + " calories"));
+        bl.appendChild(li)
+
+        var blist = localStorage.getItem("breakfastitems").length > 0 ? JSON.parse(localStorage.getItem("breakfastitems")) : [];
+        blist.push(str)
+        localStorage.setItem("breakfastitems", JSON.stringify(blist))
+      }
+      else if (whichmeal == 2) {
+        var ll = document.getElementById("lunchlist");
+        var li = document.createElement("li");
+        var str = mealname + " - " + cals + " calories";
+        li.appendChild(document.createTextNode(mealname + " - " + cals + " calories"));
+        ll.appendChild(li)
+
+        var llist = localStorage.getItem("lunchitems").length > 0 ? JSON.parse(localStorage.getItem("lunchitems")) : [];
+        llist.push(str)
+        localStorage.setItem("lunchitems", JSON.stringify(llist))
+      }
+      else if (whichmeal == 3) {
+        var dl = document.getElementById("dinnerlist");
+        var li = document.createElement("li");
+        var str = mealname + " - " + cals + " calories";
+        li.appendChild(document.createTextNode(mealname + " - " + cals + " calories"));
+        dl.appendChild(li)
+
+        var dlist = localStorage.getItem("dinneritems").length > 0 ? JSON.parse(localStorage.getItem("dinneritems")) : [];
+        dlist.push(str)
+        localStorage.setItem("dinneritems", JSON.stringify(dlist))
+      }
+
+      document.getElementById("caloriemodal").className = "hidden"
+      document.getElementById("calorielists").className = ""
+      document.getElementById("chartContainer").className = ""
+      document.getElementById("morerecipes").className = "clickable"
+      document.getElementById("dailygoaltag").className = ""
+      document.getElementById("eatenoverleft").innerText = localStorage.getItem("calorieseaten") + "/" + localStorage.getItem("calsperdaygoal") + " calories"
+      loadChart()
+      closeKeyboard()
+    }
+
+  }
+
+
+  function loadChart() {
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      height: (window.innerHeight) * .40,
+      data: [{
+        type: "pie",
+        startAngle: 240,
+        yValueFormatString: "##0.00\"\"",
+        dataPoints: [
+          { y: localStorage.getItem("calorieseaten"), label: "Eaten", color: "#76c0e3" },
+          { y: localStorage.getItem("calsperdaygoal") - localStorage.getItem("calorieseaten") < 0 ? 0 : localStorage.getItem("calsperdaygoal") - localStorage.getItem("calorieseaten"), label: "Left", color: "lightgrey" },
+        ]
+      }]
+    });
+    chart.render();
+
+  }
+  function openKeyboard() {
+    var c = document.getElementById("keyboardimage").className = "shownkey"
+  }
+
+  function closeKeyboard() {
+    var c = document.getElementById("keyboardimage").className = "hiddenkey"
+  }
+
+  function home() {
+    location.href = "./index.html";
+  }
+</script>
+
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src='./assets/bootstrap/js/bootstrap.min.js'></script>
+</head>
+
+<span style="display: flex; flex-direction: row" onclick="home()">
+  <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color: #fc9432">Health</h1>
+  <h1 style="text-align: center; font-family: cpmono-bold; font-size: 20px; color:#76c0e3">Track</h1>
+</span>
+
+<body>
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 200px; width: 50%;font-family: cpmono-plain; margin-left: 25%;"
+    class="hidden" id="bmimodal">
+    BMI CALCULATOR
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">height</h6>
+      <input id="heightinches" onclick="openKeyboard()" type="number" class="form-control" placeholder="in"
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">weight</h6>
+      <input id="weightbmi" onclick="openKeyboard()" type="number" class="form-control" placeholder="lbs"
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <button onclick="calculateBMI()" class="clickable"
+      style="color: white; border-style:groove; width: 100%; font-family: cpmono-plain; font-size: 13px; padding: 5px; margin-top: 10px;">Calculate
+      BMI</button>
+  </div>
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 200px; width: 50%;font-family: cpmono-plain; margin-left: 25%;"
+    class="hidden" id="weightmodal">
+    ADD WEIGHT
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">weight</h6>
+      <input id="weightinput" onclick="openKeyboard()" type="number" class="form-control" placeholder="lbs"
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">date</h6>
+      <input id="date" onclick="openKeyboard()" type="text" class="form-control" placeholder="mm/dd/yyyy"
+        style="width: 90%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <p style="font-size: 15px; margin-top: 10px;">(leave blank to use today's date)</p>
+    <button onclick="setDataInStorage()" class="clickable"
+      style="color: white; border-style:groove; width: 100%; font-family: cpmono-plain; font-size: 13px; padding: 5px; margin-top: 10px;">Add
+      Weight</button>
+  </div>
+
+  <p id="invaliddatetag" style="display: none; color: red; position: absolute; top: 450px; left: 50px">dates should be inputted in mm/dd/yyyy format</p>
+
+  <div
+    style="background-color: lightgray; padding: 10px; z-index: 1; position: absolute; top: 200px; width: 50%;font-family: cpmono-plain; margin-left: 25%;"
+    class="hidden" id="goalmodal">
+    Goal Setter
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">weight</h6>
+      <input id="weightgoalinp" onclick="openKeyboard()" type="number" class="form-control" placeholder="lbs"
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <span style="display: flex; flex-direction: row; align-items: center;">
+      <h6 style="">cals/day</h6>
+      <input id="calsperday" onclick="openKeyboard()" type="number" class="form-control" placeholder=""
+        style="width: 50%; height: 40px; font-family: cpmono-plain; margin-left: 10px">
+    </span>
+    <button onclick="setGoal()" class="clickable"
+      style="color: white; border-style:groove; width: 100%; font-family: cpmono-plain; font-size: 13px; padding: 5px; margin-top: 10px;">Set
+      Goal</button>
+  </div>
+
+  <div style="display: flex; justify-content: space-evenly; flex-direction: row;">
+    <button onclick="openWeight()" class="clickable"
+      style="color: white; border-style:groove; width: 30%; font-family: cpmono-plain; font-size: 13px; padding:  5px">Add
+      Weight</button>
+    <button onclick="clearProgressData()" class="clickable"
+      style="color: white; border-style:groove; width: 30%; font-family: cpmono-plain; font-size: 13px; padding: 5px; background-color: tomato;">Clear
+      Data</button>
+  </div>
+  <div
+    style="display: flex; flex-direction: row; align-items: center; margin-top: 10px; margin-left:10px; justify-content: space-evenly;">
+    <button class="clickable" onclick="openBMI()"
+      style="color: white; border-style:groove; width: 30%; font-family: cpmono-plain; font-size: 13px; padding: 5px;">BMI
+      <svg style="width:24px;height:24px; " viewBox="0 0 24 24">
+        <path fill="white"
+          d="M7,2H17A2,2 0 0,1 19,4V20A2,2 0 0,1 17,22H7A2,2 0 0,1 5,20V4A2,2 0 0,1 7,2M7,4V8H17V4H7M7,10V12H9V10H7M11,10V12H13V10H11M15,10V12H17V10H15M7,14V16H9V14H7M11,14V16H13V14H11M15,14V16H17V14H15M7,18V20H9V18H7M11,18V20H13V18H11M15,18V20H17V18H15Z" />
+      </svg>
+    </button>
+    <h1 id="bmitag" style="font-family: cpmono-plain; margin-top: 15px;">BMI: </h1>
+  </div>
+
+  <div
+    style="margin-top:10px; margin-left:10px; display: flex; flex-direction: row; justify-content: center; margin-right: 10px; align-items: center;">
+    <h1 style="font-family: cpmono-bold; font-size: 25px; margin-top: 5px" id="goaltag">Goal: </h1>
+    <button id="goaledit" class="clickable" onclick="openGoal()"
+      style="color: white; border-style:groove; width: 10%; font-family: cpmono-plain; font-size: 13px; padding: 5px; margin-left: 10px;">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+      </svg>
+    </button>
+
+  </div>
+
+  <div id="chartContainer" style="width: 100%; margin-top: 10px;" class=""></div>
+
+
+  <div style="display: flex; flex-direction: row;" class="footer">
+    <div class="navtab" id="calories"
+      style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+      Calories
+    </div>
+    <div class="navtab" id="goals"
+      style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+      My Goals
+    </div>
+    <div class="navtab" id="routine"
+      style="font-family: cpmono-plain; font-size: 15px; height: 50px; width: 34%; white-space: normal; word-wrap: break-word; display: flex; align-items: center; justify-content: center;">
+      Routine
+    </div>
+  </div>
+  <img id="keyboardimage" src="./assets/keyboard.jpeg" class="hiddenkey">
+</body>
+<script src='./assets/jquery/jquery-3.6.1.min.js'></script>
+<script type="text/javascript" src="./assets/canvasjs-3.7.1/canvasjs.min.js"></script>
+
+<script type="text/javascript">
+  window.onload = function () {
+
+    if (localStorage.getItem("progressData") == null) {
+      localStorage.setItem("progressData", JSON.stringify([{ x: new Date(2022, 0, 15), y: 98 },
+      { x: new Date(2022, 1, 16), y: 110 },
+      { x: new Date(2022, 4, 17), y: 120 },
+      { x: new Date(2022, 5, 18), y: 117 },
+      { x: new Date(2022, 7, 18), y: 126 }]));
+      console.log("here");
+    }
+    else {
+      console.log("data exists")
+    }
+
+    if (localStorage.getItem("bmi") != null) {
+      document.getElementById("bmitag").innerText = "BMI: " + localStorage.getItem("bmi")
+    }
+
+    if (localStorage.getItem("goal") != null) {
+      document.getElementById("goaltag").innerText = "Goal: " + localStorage.getItem("goal") + " lbs"
+    }
+
+    loadChart();
+  }
+
+  document.getElementById("calories").onclick = function () {
+    location.href = "./calories.html";
+  };
+  document.getElementById("goals").onclick = function () {
+    location.href = "./progress.html";
+  };
+  document.getElementById("routine").onclick = function () {
+    location.href = "./routine.html";
+  };
+
+  var pd = []
+  var place = 412;
+
+  function setGoal() {
+    var weightgoal = document.getElementById("weightgoalinp").value
+    var cpdg = document.getElementById("calsperday").value
+    var calsperdaygoal = parseInt(cpdg)
+    localStorage.setItem("calsperdaygoal", calsperdaygoal);
+    if (weightgoalinp != "" && cpdg != "") {
+      var w = parseInt(weightgoal)
+      document.getElementById("goaltag").innerText = "Goal: " + Math.floor(w) + " lbs";
+      localStorage.setItem("goal", w);
+      document.getElementById("goalmodal").className = "hidden"
+      document.getElementById("chartContainer").className = ""
+      closeKeyboard()
+    }
+  }
+
+  function openGoal() {
+    document.getElementById("goalmodal").className = ""
+    document.getElementById("chartContainer").className = "hidden"
+  }
+
+  function openWeight() {
+    document.getElementById("weightmodal").className = ""
+    document.getElementById("chartContainer").className = "hidden"
+  }
+
+  function calculateBMI() {
+    var weightbmiinp = document.getElementById("weightbmi").value
+    var height = document.getElementById("heightinches").value
+
+    if (weightbmiinp != "" && height != "") {
+      var w = parseInt(weightbmiinp)
+      var h = parseInt(height)
+
+      var bmi = Math.floor(w / ((h * h)) * 703)
+
+      localStorage.setItem("bmi", bmi)
+      document.getElementById("bmitag").innerText = "BMI: " + bmi
+    }
+    document.getElementById("bmimodal").className = "hidden"
+    document.getElementById("chartContainer").className = ""
+    closeKeyboard()
+  }
+  function openBMI() {
+    document.getElementById("bmimodal").className = ""
+    document.getElementById("chartContainer").className = "hidden"
+  }
+
+  function openKeyboard() {
+    var c = document.getElementById("keyboardimage").className = "shownkey"
+  }
+
+  function closeKeyboard() {
+    var c = document.getElementById("keyboardimage").className = "hiddenkey"
+  }
+
+  function toggleKeyboard() {
+    var c = document.getElementById("keyboardimage").className
+    if (c === "hiddenkey") {
+      document.getElementById("keyboardimage").className = "shownkey"
+    }
+    else {
+      document.getElementById("keyboardimage").className = "hiddenkey"
+    }
+  }
+
+  function setDataInStorage() {
+    var inputVal = document.getElementById("weightinput").value;
+    var date = document.getElementById("date").value
+    console.log(inputVal)
+    var now;
+    if (inputVal != "") {
+      closeKeyboard()
+      pd = []
+      if (date == "") {
+        now = new Date()
+      }
+      else {
+        //var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+        var date_regex = /^\d{2}\/\d{2}\/\d{4}$/
+        if (!(date_regex.test(date))) {
+          now = false;
+        }
+        else {
+          now = date;
+        }
+      }
+      console.log(now)
+      if (now != false) {
+        document.getElementById("invaliddatetag").style.display = "none"
+        if (localStorage.getItem("progressData").length > 0) {
+          for (var i = 0; i < JSON.parse(localStorage.getItem("progressData")).length; i++) {
+            pd.push({
+              x: new Date(JSON.parse(localStorage.getItem("progressData"))[i].x),
+              y: JSON.parse(localStorage.getItem("progressData"))[i].y
+            })
+          }
+        }
+        pd.push({ x: new Date(now), y: parseInt(inputVal) })
+
+        localStorage.setItem("progressData", JSON.stringify(pd))
+        console.log(localStorage.getItem("progressData"))
+
+        document.getElementById("weightmodal").className = "hidden"
+        document.getElementById("chartContainer").className = ""
+        loadChart();
+      }
+      else {
+        document.getElementById("invaliddatetag").style.display = ""
+      }
+    }
+
+  }
+
+  function clearProgressData() {
+    localStorage.setItem("progressData", []);
+    document.getElementById("bmitag").innerText = "BMI: "
+    document.getElementById("goaltag").innerText = "Goal: "
+    localStorage.removeItem("bmi")
+    localStorage.removeItem("goal")
+    loadChart();
+  }
+
+  function loadChart() {
+    pd = [];
+    if (localStorage.getItem("progressData").length > 0) {
+      for (var i = 0; i < JSON.parse(localStorage.getItem("progressData")).length; i++) {
+        pd.push({
+          x: new Date(JSON.parse(localStorage.getItem("progressData"))[i].x),
+          y: JSON.parse(localStorage.getItem("progressData"))[i].y
+        })
+      }
+    }
+    var chart = new CanvasJS.Chart("chartContainer",
+      {
+        height: (window.innerHeight) * .60,
+        title: {
+          text: "Your Progress",
+          fontFamily: "cpmono-plain"
+        },
+        axisY: {
+          title: "Weight(lbs)",
+          titleFontSize: 15
+        },
+        data: [
+          {
+            type: "line",
+            dataPoints: pd
+          }
+        ]
+      });
+    chart.render();
+  }
+
+  function home() {
+    location.href = "./index.html";
+  }
+</script>
+</head>
+
+</html>

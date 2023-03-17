@@ -1,0 +1,62 @@
+@font-face {
+    font-family: cpmono-bold;
+    src: url(./assets/typography/cpmonov07-cdnfonts/CPMono_v07_Bold.ttf)
+}
+@font-face {
+    font-family: cpmono-plain;
+    src: url(./assets/typography/cpmonov07-cdnfonts/CPMono_v07_Plain.ttf);
+}
+@font-face {
+    font-family: cpmono-light;
+    src: url(./assets/typography/cpmonov07-cdnfonts/CPMono_v07_Light.ttf);
+}
+.logo {
+    font-family: cpmono-bold;
+}
+
+.clickable {
+    background-color: #76c0e3;
+    border: none;
+    border-width: 0px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.4) 2.95px 2.95px 3.6px;
+}
+.navtab {
+    background-color: #76c0e3;
+    color: white;   
+}
+.navtab:active {
+    background-color: #2855bf;
+}
+
+.footer {
+    position: fixed;
+    bottom:0;
+    width:110%;
+    left: -5%;
+ }
+
+ .hiddenkey {
+     width: 100%;
+     position: absolute;
+     bottom: 0;
+     left:0;
+    z-index: 1;
+    visibility: hidden;
+ }
+
+ .shownkey {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+   z-index: 2;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.hiddencard {
+    visibility: hidden;
+}
